@@ -1,0 +1,45 @@
+{
+    "name": "a11ywatch-examples-jest",
+    "version": "0.2.56",
+    "description": "Jest example with a11ywatch",
+    "author": "Jeff Mendez <jeff@a11ywatch.com>",
+    "keywords": [
+      "accessibility",
+      "testing",
+      "WCAG",
+      "sidecar",
+      "a11ywatch"
+    ],
+    "scripts": {
+      "test": "npm run test:unit && npm run test:ci",
+      "test:unit": "jest --forceExit",
+      "test:ci": "jest --testPathPattern=ispec\\.js$ --forceExit --passWithNoTests",
+      "build": "tsc"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "@a11ywatch/a11ywatch": "0.2.56"
+    },
+    "devDependencies": {
+      "@swc/core": "^1.3.22",
+      "@swc/jest": "^0.2.24",
+      "@types/node": "^18.11.14",
+      "@types/jest": "29.2.4",
+      "jest": "^28.1.3",
+      "ts-node-dev": "^2.0.0",
+      "typescript": "^4.9.4"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/a11ywatch/a11ywatch-examples.git"
+    },
+    "jest": {
+      "transform": {
+        "^.+\\.(t|j)sx?$": "@swc/jest"
+      },
+      "verbose": true,
+      "coverageDirectory": "./coverage/",
+      "collectCoverage": true
+    }
+  }
+  
