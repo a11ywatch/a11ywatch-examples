@@ -2,6 +2,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { CheckoutForm } from "./checkout";
 import { Token } from "@stripe/stripe-js";
 import { StripeProvider } from "./stripe";
+import { useAuthContext } from "./auth-provider";
 
 type PaymentPlan = {
   title: string;
@@ -18,6 +19,7 @@ interface Plans {
 }
 
 export const PaymentsPlans = ({ children }: PropsWithChildren) => {
+  const { setAccountType, account } = useAuthContext();
   const [paymentPlans, setPaymentPlans] = useState<Plans | null>(null);
   const [highPlan, setHighPlan] = useState<boolean>(false);
   const [yearly, setYearly] = useState<boolean>(false);
@@ -45,8 +47,6 @@ export const PaymentsPlans = ({ children }: PropsWithChildren) => {
     }
   }, [paymentPlans]);
 
-  console.log(paymentPlans);
-
   const onToken = async (token: Token) => {
     const body = {
       stripeToken: token, // the stripe token with payment info
@@ -56,22 +56,34 @@ export const PaymentsPlans = ({ children }: PropsWithChildren) => {
     // send token plus account information to account upgrade
     try {
       // fetch the paymentPlans for A11yWatch
-      const res = await fetch("https://api.a11ywatch.com/api/upgrade", {
-        method: "POST",
-        body: JSON.stringify(body),
-        headers: {
-          Authorization: "", // set the auth token from login
-        },
-      });
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_A11YWATCH_API}/api/upgrade`,
+        {
+          method: "POST",
+          body: JSON.stringify(body),
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${account.jwt}`, // set the auth token from login
+          },
+        }
+      );
       const json = await res.json();
+      const user = json?.data;
 
-      console.log(json);
-
-      alert("Account upgraded!");
+      if (user) {
+        setAccountType({
+          authed: true,
+          email: user.email,
+          jwt: user.jwt,
+          role: user.role,
+          activeSubscription: user.activeSubscription,
+        });
+      } else {
+        alert(json?.message ?? "Error with API.");
+      }
     } catch (e) {
       console.error(e);
     }
-    console.log(token);
   };
 
   const onToggleHighPlan = () => setHighPlan((x) => !x);
@@ -80,6 +92,9 @@ export const PaymentsPlans = ({ children }: PropsWithChildren) => {
 
   return (
     <div>
+      <div style={{ padding: 10, fontSize: "1.4rem" }}>
+        Welcome: {account.email}
+      </div>
       {paymentPlans ? (
         <div>
           <div>Features</div>

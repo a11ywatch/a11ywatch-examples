@@ -10,12 +10,21 @@ export const StripProviderWrapper = ({ children }: PropsWithChildren) => {
     if (!stripePromise) {
       (async () => {
         try {
-          // fetch the A11yWatch client key for stripe
-          const res = await fetch("https://api.a11ywatch.com/api/client-key");
+          // fetch the A11yWatch Stripe client key for stripe
+          const res = await fetch(
+            `${process.env.NEXT_PUBLIC_A11YWATCH_API}/api/client-key`
+          );
           const json = await res.json();
-          const stripeObject = await loadStripe(json.data.client_secret);
-          if (stripeObject) {
-            setStripe(stripeObject);
+
+          if (json?.data?.client_secret) {
+            const stripeObject = await loadStripe(json.data.client_secret);
+            if (stripeObject) {
+              setStripe(stripeObject);
+            }
+          } else {
+            console.error(
+              json?.message ?? "Issue with stripe secret. Rate limits may be applied."
+            );
           }
         } catch (e) {
           console.error(e);

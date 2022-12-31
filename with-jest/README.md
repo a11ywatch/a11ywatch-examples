@@ -1,6 +1,8 @@
 # with-jest
 
-Jest example using A11yWatch to perform test
+Jest example using A11yWatch to perform test.
+
+The example uses the A11yWatch sidecar to launch the instance locally.
 
 ## Getting Started
 
