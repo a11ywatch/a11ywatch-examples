@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@a11ywatch/react-a11ywatch-js@^0.0.1":
+"@a11ywatch/react-a11ywatch-js@0.0.1":
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/@a11ywatch/react-a11ywatch-js/-/react-a11ywatch-js-0.0.1.tgz#c6e64fa30fd5dbcd3b7ade464e281154eea58ff3"
   integrity sha512-UXXtuYapQmscrZgZOknQaVSMfQ7xu8uVDaF8PUPHVGTPsQuACADNWvdVBdGe1ciFh5QekLt07j0V75JQ8UHAqg==
