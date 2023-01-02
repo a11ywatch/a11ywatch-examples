@@ -10,7 +10,7 @@
     "fix": "prettier --write '**/*.{js,jsx,ts,tsx}'"
   },
   "dependencies": {
-    "@a11ywatch/react-a11ywatch-js": "0.0.1",
+    "@a11ywatch/react-a11ywatch-js": "0.0.7",
     "@stripe/react-stripe-js": "^1.16.1",
     "@stripe/stripe-js": "^1.46.0",
     "next": "13.1.1",

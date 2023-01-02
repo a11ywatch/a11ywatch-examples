@@ -21,7 +21,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can integrate with A11yWatch and manage your own external payment usage dynamically without having to interact with the UI.
 This project shows how to use the A11yWatch API to build your own payment system using Stripe that can upgarde and downgrade a user
-account for improved API limits.
+account for improved API limits. The example wraps the A11yWatchProvider in the [`_app.tsx`](./components/app.tsx) file for app wide usage.
 
 ## Integration steps
 
