@@ -3,6 +3,7 @@
 Examples to get started with A11yWatch.
 
 1. [jest](./with-jest/) - testing example
+1. [lint](./with-lint/) - linter example
 1. [account management & payments](./with-payments/) - verbose example
 1. [account management & payments with a11ywatch hooks](./with-a11ywatch-react-forms/) - quick example using pre-built unstyled components
 
