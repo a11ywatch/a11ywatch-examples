@@ -8,6 +8,4 @@ Examples to get started with A11yWatch.
 
 [CLI](./with-cli/) - CLI example
 
-[account management & payments](./with-payments/) - verbose example
-
-[account management & payments with a11ywatch hooks](./with-a11ywatch-react-forms/) - quick example using pre-built unstyled components
+[account management](./with-a11ywatch-react-forms/) - quick example using pre-built unstyled components
